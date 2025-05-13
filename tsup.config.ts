@@ -5,7 +5,7 @@ export default defineConfig({
   platform: "node",
   target: "node18",
   outDir: "dist",
-  name: "playwright-mcp-docker",
+  name: "your-package-name",
   tsconfig: "tsconfig.json",
   clean: true,
   dts: true,
