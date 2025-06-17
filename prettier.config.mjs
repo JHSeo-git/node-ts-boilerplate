@@ -1,15 +1,12 @@
 /** @type {import('prettier').Config} */
-module.exports = {
+export default {
   endOfLine: "lf",
   semi: false,
   singleQuote: false,
   printWidth: 100,
   tabWidth: 2,
   trailingComma: "es5",
-  plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-packagejson",
-  ],
+  plugins: ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-packagejson"],
   importOrder: [
     "^(node:/(.*)$)|^(node:$)",
     "",
@@ -24,4 +21,4 @@ module.exports = {
     "^[./]",
   ],
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
-};
+}

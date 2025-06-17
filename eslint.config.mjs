@@ -1,35 +1,21 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import ts from "typescript-eslint";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { FlatCompat } from "@eslint/eslintrc"
+import js from "@eslint/js"
+import eslintConfigPrettier from "eslint-config-prettier"
+import ts from "typescript-eslint"
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
+  baseDirectory: import.meta.dirname,
+})
 
 /** @type {import('eslint').Linter.Config[]} */
 const eslintConfig = [
   {
-    ignores: [
-      "node_modules/",
-      "dist/",
-      "build/",
-      "prettier.config.cjs",
-      ".target/",
-    ],
+    ignores: ["node_modules/", "dist/", "prettier.config.*"],
   },
 
-  ...compat.extends(
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ),
+  ...compat.extends("eslint:recommended", "plugin:@typescript-eslint/recommended"),
 
+  js.configs.recommended,
   ...ts.configs.recommended,
   {
     rules: {
@@ -37,6 +23,8 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": "warn",
     },
   },
-];
 
-export default eslintConfig;
+  eslintConfigPrettier,
+]
+
+export default eslintConfig
